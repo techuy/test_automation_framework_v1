@@ -6,16 +6,27 @@ pipeline {
 
   }
   stages {
-    stage('Github Pull') {
+    stage('Git Pull') {
       steps {
-        git(url: 'https://github.com/techuy/test_automation_framework_v1', poll: true)
+        git 'https://github.com/techuy/test_automation_framework_v1'
       }
     }
 
     stage('Check path') {
-      steps {
-        sh '''$PATH
-ls'''
+      parallel {
+        stage('Check path') {
+          steps {
+            sh '''$PATH
+'''
+          }
+        }
+
+        stage('') {
+          steps {
+            sh 'ls'
+          }
+        }
+
       }
     }
 
