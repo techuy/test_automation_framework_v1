@@ -1,10 +1,32 @@
 pipeline {
-  agent none
+  agent {
+    node {
+      label 'keen'
+    }
+
+  }
   stages {
-    stage('Performance Test') {
+    stage('Git Pull') {
       steps {
-        sh 'jmeter Jjmeter.save.saveservice.output_format=xml -n -t $path\\pt.jmx -l Test.jtl'
-        perfReport(sourceDataFiles: '**/*.jtl', compareBuildPrevious: true)
+        git 'https://github.com/techuy/test_automation_framework_v1'
+      }
+    }
+
+    stage('Check path') {
+      parallel {
+        stage('Check path') {
+          steps {
+            sh '''$PATH
+'''
+          }
+        }
+
+        stage('') {
+          steps {
+            sh 'ls'
+          }
+        }
+
       }
     }
 
