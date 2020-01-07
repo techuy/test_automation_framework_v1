@@ -1,5 +1,10 @@
 pipeline {
-  agent none
+  agent {
+    node {
+      label 'run Pipeline'
+    }
+
+  }
   stages {
     stage('Github Pull') {
       steps {
@@ -7,9 +12,10 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('Check path') {
       steps {
-        sh '$PATH'
+        sh '''$PATH
+ls'''
       }
     }
 
