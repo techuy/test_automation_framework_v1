@@ -13,20 +13,15 @@ pipeline {
     }
 
     stage('Check path') {
-      parallel {
-        stage('Check path') {
-          steps {
-            sh '''$PATH
-'''
-          }
-        }
+      steps {
+        sh '''cd "$PWD"/pt
+jmeter -n -t test.jmx -Jthreads=2 -l Report\\result.jtl'''
+      }
+    }
 
-        stage('') {
-          steps {
-            sh 'ls'
-          }
-        }
-
+    stage('') {
+      steps {
+        perfReport 'Report\\result.jtl'
       }
     }
 
