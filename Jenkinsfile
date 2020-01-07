@@ -1,10 +1,15 @@
 pipeline {
   agent none
   stages {
-    stage('Performance Test') {
+    stage('Github Pull') {
       steps {
-        sh 'jmeter Jjmeter.save.saveservice.output_format=xml -n -t $path\\pt.jmx -l Test.jtl'
-        perfReport(sourceDataFiles: '**/*.jtl', compareBuildPrevious: true)
+        git(url: 'https://github.com/techuy/test_automation_framework_v1', poll: true)
+      }
+    }
+
+    stage('') {
+      steps {
+        sh '$PATH'
       }
     }
 
