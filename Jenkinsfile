@@ -14,14 +14,7 @@ pipeline {
 
     stage('Performance Test') {
       steps {
-        sh '''cd "$PWD"/pt
-jmeter -Jjmeter.save.saveservice.output_format=xml -n -t test.jmx -Jthreads=2 -l Report\\result.jtl'''
-      }
-    }
-
-    stage('Report') {
-      steps {
-        perfReport 'Report/result.jtl'
+        build 'Performance_Testing'
       }
     }
 
