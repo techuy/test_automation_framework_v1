@@ -19,9 +19,9 @@ jmeter -n -t test.jmx -Jthreads=2 -l Report\\result.jtl'''
       }
     }
 
-    stage('') {
+    stage('Report') {
       steps {
-        perfReport 'Report\\result.jtl'
+        perfReport 'Report/result.jtl'
       }
     }
 
